@@ -1,0 +1,60 @@
+/* Ids */
+#logo{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+#header{
+    text-align: center;
+    font-size: 20px;
+}
+
+#description{
+    background-color: lightcyan;
+    margin-left: 256px;
+    margin-right: 256px;
+    padding: 1%;
+}
+
+/* Tags globais */
+body{
+    padding: 50px;
+    background-color: azure;
+}
+
+label, input{
+    font-size: 20px;
+    width: 100%;
+    padding: 8px;
+    margin:  5px 0 22px 0;
+    border: none;
+}
+
+
+input:focus{
+    background-color: aliceblue;
+}
+
+select{
+    font-size: 20px;
+    margin:  5px 0 22px 0;
+    padding: 4px;
+    width: 25%;
+}
+
+hr{
+    margin-bottom: 12px;
+}
+
+button{
+    width: 20%;
+    font-size: 18px;
+    padding: 4px;
+    margin-bottom: 12px;
+}
+
+footer{
+    text-align: right;
+}
