@@ -18,6 +18,26 @@
     padding: 1%;
 }
 
+#tabelaLinks {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 32px;
+    line-height: 48px;
+}
+
+#links:link,
+#links:visited,
+#links:active {
+    text-decoration: none;
+}
+
+#links:hover {
+    color: #000;
+    background: cornflowerblue;
+}
+
 /* Tags globais */
 body {
     padding: 50px;
