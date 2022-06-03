@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/frontend/css/style.css" />
+    <script type="text/javascript" src="/frontend/js/estacionamentoRequests.js"></script>
+
+    <title>EstacionAqui - Cadastro</title>
+</head>
+
+<body>
+    <header>
+        <a href="/frontend/index.html">Voltar para página inicial</a>
+    </header>
+
+    <div>
+        <div id="header">
+            <img src="/frontend/images/estacionAquiLogo.svg" alt="EstacionaAqui Logo" id="logo" />
+            <h1 id="description">Cadastro de Estacionamento</h1>
+            <p>Preencha o formulário abaixo e adicione um novo estacionamento ao nosso banco!</p>
+            <hr />
+        </div>
+
+        <div>
+            <form onsubmit="salvarEstacionamento()" id="formularioEstacionamento">
+                <label for="placa">Nome: </label>
+                <input id="nome" type="text" name="nome" placeholder="Nome do estacionamento" required />
+                <br />
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>Desafio Sprint 9 - Pablo Ryan - 2022</p>
+    </footer>
+</body>
+
+</html>
