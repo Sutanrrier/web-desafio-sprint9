@@ -5,17 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/frontend/css/style.css" />
     <script type="text/javascript" src="/frontend/js/carroRequests.js"></script>
     <title>EstacionAqui - Consulta</title>
 </head>
 
 <body>
-    <a href="/frontend/index.html">Voltar para a página de Cadastro</a>
-    <br>
+    <header>
+        <a href="/frontend/index.html">Voltar para a página de Cadastro</a>
+    </header>
 
-    <table id="tabelaCarros">
-       <script>criarTabelaCarro()</script>
-    </table>
+    <div id="header">
+        <img src="/frontend/images/estacionAquiLogo.svg" alt="EstacionaAqui Logo" id="logo" />
+        <h1 id="description">EstacionAqui - Consulta</h1>
+        <p>Confira nossa base de dados de carros cadastrados!</p>
+        <hr />
+    </div>
+
+    <div>
+        <table id="tabelaCarros">
+            <tr>
+                <th>ID</th>
+                <th>COR</th>
+                <th>PLACA</th>
+                <th>VELOCIDADE MÁX.</th>
+                <th>ESTACIONADO EM</th>
+            </tr>
+            <script>criarTabelaCarro()</script>
+        </table>
+    </div>
+
+    <footer>
+        <p>Desafio Sprint 9 - Pablo Ryan - 2022</p>
+    </footer>
 </body>
 
 </html>

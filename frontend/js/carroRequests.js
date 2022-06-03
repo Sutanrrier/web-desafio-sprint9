@@ -53,7 +53,7 @@ function criarTabelaCarro() {
         colunaId.innerHTML = objeto.id;
         colunaCor.innerHTML = objeto.cor;
         colunaPlaca.innerHTML = objeto.placa;
-        colunaVelocidade.innerHTML = objeto.velocidademax;
+        colunaVelocidade.innerHTML = objeto.velocidademax + " Km/h";
         colunaEstacionamento.innerHTML = objeto.estacionamento.nome;
 
         //Colocando as colunas dentro da linha
