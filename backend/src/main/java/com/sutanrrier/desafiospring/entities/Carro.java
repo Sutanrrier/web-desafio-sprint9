@@ -1,5 +1,6 @@
 package com.sutanrrier.desafiospring.entities;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -14,8 +15,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_carro")
-public class Carro {
-	
+public class Carro implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
