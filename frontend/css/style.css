@@ -1,4 +1,23 @@
+/* Classes */
+.tabelasConsulta {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 32px;
+    column-width: 300px;
+    font-size: 18px;
+}
+
 /* Ids */
+#tabelaCarros {
+    width: 75% !important;
+}
+
+#tabelaEstacionamento {
+    width: 25% !important;
+}
+
 #logo {
     display: inline-block;
     margin-left: auto;
@@ -27,22 +46,11 @@
     line-height: 48px;
 }
 
-#tabelaCarros {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-    text-align: center;
-    line-height: 24px;
-    column-width: 300px;
-}
-
-
 #links:link,
 #links:visited,
 #links:active {
     text-decoration: none;
-    color:darkslateblue;
+    color: darkslateblue;
 }
 
 #links:hover {
@@ -86,9 +94,15 @@ button {
     margin-bottom: 12px;
 }
 
-table, td, th {
+table,
+td,
+th {
     border: 1px solid black;
-  }
+}
+
+th {
+    background-color: lightcyan;
+}
 
 footer {
     text-align: right;
