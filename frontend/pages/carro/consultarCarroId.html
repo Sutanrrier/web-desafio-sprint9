@@ -22,9 +22,14 @@
         <hr />
     </div>
 
+    <div class="secaoConsulta">
+        <input type="number" placeholder="Digite o ID do carro a ser buscado" name="idCarro" id="idPesquisaCarro"
+            required>
+        <button type="button" onclick="criarTabelaCarroId()">Pesquisar</button>
+    </div>
+
     <div>
-        <table id="tabelaCarros" class="tabelasConsulta">
-            <script>criarTabelaCarro()</script>
+        <table id="tabelaCarroId" class="tabelasConsulta">
         </table>
     </div>
 

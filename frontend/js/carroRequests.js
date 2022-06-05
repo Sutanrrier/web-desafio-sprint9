@@ -9,6 +9,7 @@ function salvarCarro() {
     const velocidademax = document.getElementById("velocidademax").value;
     const estacionamento_id = document.getElementById("estacionamento_id").value;
 
+    const url = "http://localhost:8080/carros";
     const body = {
         "cor": cor,
         "placa": placa,
@@ -17,7 +18,6 @@ function salvarCarro() {
             "id": estacionamento_id
         }
     }
-
     const options = {
         method: "POST",
         body: JSON.stringify(body),
@@ -26,8 +26,6 @@ function salvarCarro() {
         headers: myHeaders
     }
 
-    const url = "http://localhost:8080/carros"
-
     fetch(url, options)
         .then(response => (response.json())
             .then(data => (console.log(data))));
@@ -35,49 +33,114 @@ function salvarCarro() {
     alert("Carro cadastrado com sucesso!");
 }
 
+//Cria o cabecalho para a tabela de consulta
+function criaCabecalhoTabela() {
+    const linha = document.createElement("tr");
+
+    // Criando as colunas da linha
+    let colunaId = document.createElement("th");
+    let colunaCor = document.createElement("th");
+    let colunaPlaca = document.createElement("th");
+    let colunaVelocidade = document.createElement("th");
+    let colunaEstacionamento = document.createElement("th");
+
+    //Injetando informação nas colunas da linha
+    colunaId.innerHTML = "ID";
+    colunaCor.innerHTML = "COR";
+    colunaPlaca.innerHTML = "PLACA";
+    colunaVelocidade.innerHTML = "VELOCIDADE MÁX.";
+    colunaEstacionamento.innerHTML = "ESTACIONADO EM";
+
+    //Colocando as colunas dentro da linha
+    linha.appendChild(colunaId);
+    linha.appendChild(colunaCor);
+    linha.appendChild(colunaPlaca);
+    linha.appendChild(colunaVelocidade);
+    linha.appendChild(colunaEstacionamento);
+
+    return linha;
+}
+
+//Cria uma linha para a tabela de consulta
+function criaLinhaTabela(objeto) {
+    const linha = document.createElement("tr");
+
+    // Criando as colunas da linha
+    let colunaId = document.createElement("td");
+    let colunaCor = document.createElement("td");
+    let colunaPlaca = document.createElement("td");
+    let colunaVelocidade = document.createElement("td");
+    let colunaEstacionamento = document.createElement("td");
+
+    //Injetando informação nas colunas da linha
+    colunaId.innerHTML = objeto.id;
+    colunaCor.innerHTML = objeto.cor;
+    colunaPlaca.innerHTML = objeto.placa;
+    colunaVelocidade.innerHTML = objeto.velocidademax + " Km/h";
+    colunaEstacionamento.innerHTML = objeto.estacionamento.nome;
+
+    //Colocando as colunas dentro da linha
+    linha.appendChild(colunaId);
+    linha.appendChild(colunaCor);
+    linha.appendChild(colunaPlaca);
+    linha.appendChild(colunaVelocidade);
+    linha.appendChild(colunaEstacionamento);
+
+    return linha;
+}
+
 //GET - Retorna todos os carros dentro do banco e gera uma tabela com o JSON de resposta
 function criarTabelaCarro() {
-    let tabela = document.getElementById("tabelaCarros")
+    const tabela = document.getElementById("tabelaCarros");
 
-    function criaLinha(objeto) {
-        let linha = document.createElement("tr");
+    const cabecalho = criaCabecalhoTabela();
+    tabela.appendChild(cabecalho);
 
-        // Criando as colunas da linha
-        let colunaId = document.createElement("td");
-        let colunaCor = document.createElement("td");
-        let colunaPlaca = document.createElement("td");
-        let colunaVelocidade = document.createElement("td");
-        let colunaEstacionamento = document.createElement("td");
-
-        //Injetando informação nas colunas da linha
-        colunaId.innerHTML = objeto.id;
-        colunaCor.innerHTML = objeto.cor;
-        colunaPlaca.innerHTML = objeto.placa;
-        colunaVelocidade.innerHTML = objeto.velocidademax + " Km/h";
-        colunaEstacionamento.innerHTML = objeto.estacionamento.nome;
-
-        //Colocando as colunas dentro da linha
-        linha.appendChild(colunaId);
-        linha.appendChild(colunaCor);
-        linha.appendChild(colunaPlaca);
-        linha.appendChild(colunaVelocidade);
-        linha.appendChild(colunaEstacionamento);
-        
-        return linha;
-    }
-
+    const url = "http://localhost:8080/carros"
     const options = {
         method: "GET",
         mode: "cors",
         cache: "default"
     }
 
-    const url = "http://localhost:8080/carros"
-
     fetch(url, options)
         .then(response => response.json()
             .then(data => (data.forEach(element => {
-                let linha = criaLinha(element);
+                let linha = criaLinhaTabela(element);
                 tabela.appendChild(linha);
             }))));
+}
+
+function criarTabelaCarroId() {
+    const tabela = document.getElementById("tabelaCarroId");
+    const idCarro = document.getElementById("idPesquisaCarro").value;
+
+    //Checa se existe filhos na tabela e caso exista, remove todos os filhos dela.
+    const childrensTabela = tabela.childNodes;
+    if (childrensTabela.length > 1) {
+        tabela.removeChild(childrensTabela[1]);
+        tabela.removeChild(childrensTabela[1]);
+    }
+
+    const cabecalho = criaCabecalhoTabela();
+    tabela.appendChild(cabecalho);
+
+    const url = `http://localhost:8080/carros/${idCarro}`;
+    const options = {
+        method: "GET",
+        mode: "cors",
+        cache: "default"
+    }
+
+    fetch(url, options)
+        .then(response => response.json()
+            .then(data => {
+                let linha = criaLinhaTabela(data);
+                tabela.appendChild(linha)
+            }))
+        .catch(e => {
+            alert("Carro não encontrado no banco de dados!");
+            tabela.removeChild(childrensTabela[1]);
+        });
+
 }
