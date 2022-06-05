@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sutanrrier.desafiospring.entities.Estacionamento;
@@ -18,7 +19,7 @@ public class EstacionamentoService {
 	private EstacionamentoRepository repository;
 	
 	public List<Estacionamento> findAll(){
-		return repository.findAll();
+		return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 	
 	public Optional<Estacionamento> findById(Integer id){
