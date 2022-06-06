@@ -27,10 +27,9 @@ function salvarCarro() {
     }
 
     fetch(url, options)
-        .then(response => (response.json())
-            .then(data => (console.log(data))));
-
-    alert("Carro cadastrado com sucesso!");
+        .then(response => {
+            (response.status == "201") ? alert("Carro cadastrado com sucesso!") : alert("Ocorreu um erro!");
+        })
 }
 
 //Cria o cabecalho para a tabela de consulta
@@ -111,6 +110,7 @@ function criarTabelaCarro() {
             }))));
 }
 
+//GET - Retorna um carro dentro do banco a partir de um ID e gera uma tabela com o JSON de resposta
 function criarTabelaCarroId() {
     const tabela = document.getElementById("tabelaCarroId");
     const idCarro = document.getElementById("idPesquisaCarro").value;
@@ -143,4 +143,21 @@ function criarTabelaCarroId() {
             tabela.removeChild(childrensTabela[1]);
         });
 
+}
+
+function apagarCarro() {
+    const idCarro = document.getElementById("idPesquisaCarro").value;
+
+    const url = `http://localhost:8080/carros/${idCarro}`;
+    const options = {
+        method: "DELETE",
+        mode: "cors",
+        cache: "default"
+    }
+
+
+    fetch(url, options)
+        .then(response => {
+            (response.ok) ? alert("Carro removido com sucesso!") : alert("Ocorreu um erro!");
+        })
 }

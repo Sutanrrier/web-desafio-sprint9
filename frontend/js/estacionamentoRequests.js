@@ -25,25 +25,6 @@ function salvarEstacionamento() {
     alert("Estacionamento cadastrado com sucesso!");
 }
 
-//Cria uma linha para a tabela de consulta
-function criaLinhaTabela(objeto) {
-    let linha = document.createElement("tr");
-
-    // Criando as colunas da linha
-    let colunaId = document.createElement("td");
-    let colunaNome = document.createElement("td");
-
-    //Injetando informação nas colunas da linha
-    colunaId.innerHTML = objeto.id;
-    colunaNome.innerHTML = objeto.nome;
-
-    //Colocando as colunas dentro da linha
-    linha.appendChild(colunaId);
-    linha.appendChild(colunaNome);
-
-    return linha;
-}
-
 //Cria o cabeçalho da tabela
 function criaCabecalhoTabela() {
     const linha = document.createElement("tr");
@@ -63,7 +44,26 @@ function criaCabecalhoTabela() {
     return linha;
 }
 
-//GET - Retorna todos os carros dentro do banco e gera uma tabela com o JSON de resposta
+//Cria uma linha para a tabela de consulta
+function criaLinhaTabela(objeto) {
+    let linha = document.createElement("tr");
+
+    // Criando as colunas da linha
+    let colunaId = document.createElement("td");
+    let colunaNome = document.createElement("td");
+
+    //Injetando informação nas colunas da linha
+    colunaId.innerHTML = objeto.id;
+    colunaNome.innerHTML = objeto.nome;
+
+    //Colocando as colunas dentro da linha
+    linha.appendChild(colunaId);
+    linha.appendChild(colunaNome);
+
+    return linha;
+}
+
+//GET - Retorna todos os estacionamentos dentro do banco e gera uma tabela com o JSON de resposta
 function criarTabelaEstacionamento() {
     const tabela = document.getElementById("tabelaEstacionamento");
 
@@ -85,6 +85,7 @@ function criarTabelaEstacionamento() {
             }))));
 }
 
+//GET - Retorna um estacionamento dentro do banco a partir de um ID e gera uma tabela com o JSON de resposta
 function criarTabelaEstacionamentoId() {
     const tabela = document.getElementById("tabelaEstacionamentoId");
     const idEstacionamento = document.getElementById("idPesquisaEstacionamento").value;
