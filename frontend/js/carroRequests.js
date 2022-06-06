@@ -145,6 +145,7 @@ function criarTabelaCarroId() {
 
 }
 
+//DELETE - Apaga um carro dentro do banco apartir de um ID
 function apagarCarro() {
     const idCarro = document.getElementById("idPesquisaCarro").value;
 
@@ -155,9 +156,8 @@ function apagarCarro() {
         cache: "default"
     }
 
-
     fetch(url, options)
         .then(response => {
-            (response.ok) ? alert("Carro removido com sucesso!") : alert("Ocorreu um erro!");
+            (response.ok) ? alert("Carro removido com sucesso!") : alert("Erro! -> Este ID não existe no banco!");
         })
 }

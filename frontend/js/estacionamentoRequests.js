@@ -19,10 +19,9 @@ function salvarEstacionamento() {
     }
 
     fetch(url, options)
-        .then(response => (response.json())
-            .then(data => (console.log(data))));
-
-    alert("Estacionamento cadastrado com sucesso!");
+        .then(response => {
+            (response.status == "201") ? alert("Estacionamento cadastrado com sucesso!") : alert("Ocorreu um erro!");
+        })
 }
 
 //Cria o cabeçalho da tabela
@@ -119,4 +118,21 @@ function criarTabelaEstacionamentoId() {
             tabela.removeChild(childrensTabela[1]);
         });
 
+}
+
+//DELETE - Apaga um carro dentro do banco apartir de um ID
+function apagarEstacionamento() {
+    const idEstacionamento = document.getElementById("idPesquisaEstacionamento").value;
+
+    const url = `http://localhost:8080/estacionamentos/${idEstacionamento}`;
+    const options = {
+        method: "DELETE",
+        mode: "cors",
+        cache: "default"
+    }
+
+    fetch(url, options)
+        .then(response => {
+            (response.ok) ? alert("Estacionamento removido com sucesso!") : alert("Erro! -> Este ID não existe ou não pode ser removido do banco!");
+        })
 }
