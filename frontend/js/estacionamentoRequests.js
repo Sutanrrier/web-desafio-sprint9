@@ -6,6 +6,7 @@ myHeaders.append("Content-type", "application/json; charset=UTF-8");
 function salvarEstacionamento() {
     const nome = document.getElementById("nome").value;
 
+    const url = "http://localhost:8080/estacionamentos"
     const body = {
         "nome": nome
     }
@@ -17,8 +18,6 @@ function salvarEstacionamento() {
         headers: myHeaders
     }
 
-    const url = "http://localhost:8080/estacionamentos"
-
     fetch(url, options)
         .then(response => (response.json())
             .then(data => (console.log(data))));
@@ -26,40 +25,97 @@ function salvarEstacionamento() {
     alert("Estacionamento cadastrado com sucesso!");
 }
 
+//Cria uma linha para a tabela de consulta
+function criaLinhaTabela(objeto) {
+    let linha = document.createElement("tr");
+
+    // Criando as colunas da linha
+    let colunaId = document.createElement("td");
+    let colunaNome = document.createElement("td");
+
+    //Injetando informação nas colunas da linha
+    colunaId.innerHTML = objeto.id;
+    colunaNome.innerHTML = objeto.nome;
+
+    //Colocando as colunas dentro da linha
+    linha.appendChild(colunaId);
+    linha.appendChild(colunaNome);
+
+    return linha;
+}
+
+//Cria o cabeçalho da tabela
+function criaCabecalhoTabela() {
+    const linha = document.createElement("tr");
+
+    // Criando as colunas da linha
+    let colunaId = document.createElement("th");
+    let colunaNome = document.createElement("th");
+
+    //Injetando informação nas colunas da linha
+    colunaId.innerHTML = "ID";
+    colunaNome.innerHTML = "NOME";
+
+    //Colocando as colunas dentro da linha
+    linha.appendChild(colunaId);
+    linha.appendChild(colunaNome);
+
+    return linha;
+}
+
 //GET - Retorna todos os carros dentro do banco e gera uma tabela com o JSON de resposta
 function criarTabelaEstacionamento() {
-    let tabela = document.getElementById("tabelaEstacionamento")
+    const tabela = document.getElementById("tabelaEstacionamento");
 
-    function criaLinha(objeto) {
-        let linha = document.createElement("tr");
+    const cabecalho = criaCabecalhoTabela();
+    tabela.appendChild(cabecalho);
 
-        // Criando as colunas da linha
-        let colunaId = document.createElement("td");
-        let colunaNome = document.createElement("td");
-        
-        //Injetando informação nas colunas da linha
-        colunaId.innerHTML = objeto.id;
-        colunaNome.innerHTML = objeto.nome;
-
-        //Colocando as colunas dentro da linha
-        linha.appendChild(colunaId);
-        linha.appendChild(colunaNome);
-
-        return linha;
-    }
-
+    const url = "http://localhost:8080/estacionamentos"
     const options = {
         method: "GET",
         mode: "cors",
         cache: "default"
     }
 
-    const url = "http://localhost:8080/estacionamentos"
-
     fetch(url, options)
         .then(response => response.json()
             .then(data => (data.forEach(element => {
-                let linha = criaLinha(element);
+                let linha = criaLinhaTabela(element);
                 tabela.appendChild(linha);
             }))));
+}
+
+function criarTabelaEstacionamentoId() {
+    const tabela = document.getElementById("tabelaEstacionamentoId");
+    const idEstacionamento = document.getElementById("idPesquisaEstacionamento").value;
+
+    //Checa se existe filhos na tabela e caso exista, remove todos os filhos dela.
+    const childrensTabela = tabela.childNodes;
+
+    if (childrensTabela.length > 1) {
+        tabela.removeChild(childrensTabela[1]);
+        tabela.removeChild(childrensTabela[1]);
+    }
+
+    const cabecalho = criaCabecalhoTabela();
+    tabela.appendChild(cabecalho);
+
+    const url = `http://localhost:8080/estacionamentos/${idEstacionamento}`;
+    const options = {
+        method: "GET",
+        mode: "cors",
+        cache: "default"
+    }
+
+    fetch(url, options)
+        .then(response => response.json()
+            .then(data => {
+                let linha = criaLinhaTabela(data);
+                tabela.appendChild(linha)
+            }))
+        .catch(e => {
+            alert("Estacionamento não encontrado no banco de dados!");
+            tabela.removeChild(childrensTabela[1]);
+        });
+
 }

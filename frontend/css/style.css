@@ -20,8 +20,9 @@
     width: 75% !important;
 }
 
-#tabelaEstacionamento {
-    width: 25% !important;
+#tabelaEstacionamento,
+#tabelaEstacionamentoId {
+    width: 30% !important;
 }
 
 #logo {

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/frontend/css/style.css" />
-    <script type="text/javascript" src="/frontend/js/carroRequests.js"></script>
+    <script type="text/javascript" src="/frontend/js/estacionamentoRequests.js"></script>
     <title>EstacionAqui - Consulta</title>
 </head>
 
@@ -17,19 +17,19 @@
 
     <div id="header">
         <img src="/frontend/images/estacionAquiLogo.svg" alt="EstacionaAqui Logo" id="logo" />
-        <h1 id="description">Consulta de Veículos</h1>
-        <p>Informe o ID do veículo que deseja procurar abaixo!</p>
+        <h1 id="description">Consulta de Estacionamentos</h1>
+        <p>Informe o ID do estacionamento que deseja procurar abaixo!</p>
         <hr />
     </div>
 
     <div class="secaoConsulta">
-        <input type="number" placeholder="ID do veículo" name="idCarro" id="idPesquisaCarro"
+        <input type="number" placeholder="ID do Estacionamento" name="idEstacionamento" id="idPesquisaEstacionamento"
             required>
-        <button type="button" onclick="criarTabelaCarroId()">Pesquisar</button>
+        <button type="button" onclick="criarTabelaEstacionamentoId()">Pesquisar</button>
     </div>
 
     <div>
-        <table id="tabelaCarroId" class="tabelasConsulta">
+        <table id="tabelaEstacionamentoId" class="tabelasConsulta">
         </table>
     </div>
 
