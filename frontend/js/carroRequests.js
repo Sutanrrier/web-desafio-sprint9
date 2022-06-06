@@ -24,35 +24,6 @@ function criarSelectCarro() {
             }))));
 }
 
-//POST - Gera um JSON com os campos do formulario e envia como body da requisição
-function salvarCarro() {
-    const cor = document.getElementById("cor").value;
-    const placa = document.getElementById("placa").value;
-    const velocidademax = document.getElementById("velocidademax").value;
-    const estacionamento_id = document.getElementById("estacionamento_id").value;
-
-    const url = "http://localhost:8080/carros";
-    const body = {
-        "cor": cor,
-        "placa": placa,
-        "velocidademax": velocidademax,
-        "estacionamento": {
-            "id": estacionamento_id
-        }
-    }
-    const options = {
-        method: "POST",
-        body: JSON.stringify(body),
-        mode: "cors",
-        cache: "default",
-        headers: myHeaders
-    }
-
-    fetch(url, options)
-        .then(response => {
-            (response.status == "201") ? alert("Carro cadastrado com sucesso!") : alert("Ocorreu um erro!");
-        })
-}
 
 //Cria o cabecalho para a tabela de consulta
 function criaCabecalhoTabela() {
@@ -165,6 +136,68 @@ function criarTabelaCarroId() {
             tabela.removeChild(childrensTabela[1]);
         });
 
+}
+
+//POST - Gera um JSON com os campos do formulario e envia como body da requisição para cadastrar um carro
+function salvarCarro() {
+    const cor = document.getElementById("cor").value;
+    const placa = document.getElementById("placa").value;
+    const velocidademax = document.getElementById("velocidademax").value;
+    const estacionamento_id = document.getElementById("estacionamento_id").value;
+
+    const url = "http://localhost:8080/carros";
+    const body = {
+        "cor": cor,
+        "placa": placa,
+        "velocidademax": velocidademax,
+        "estacionamento": {
+            "id": estacionamento_id
+        }
+    }
+    const options = {
+        method: "POST",
+        body: JSON.stringify(body),
+        mode: "cors",
+        cache: "default",
+        headers: myHeaders
+    }
+
+    fetch(url, options)
+        .then(response => {
+            (response.status == "201") ? alert("Carro cadastrado com sucesso!") : alert("Ocorreu um erro!");
+        })
+}
+
+//PUT - Gera um JSON com os campos do formulario e envia como body da requisição para atualizar um carro por seu Id
+function atualizarCarro() {
+    const id = document.getElementById("id").value;
+    const cor = document.getElementById("cor").value;
+    const placa = document.getElementById("placa").value;
+    const velocidademax = document.getElementById("velocidademax").value;
+    const estacionamento_id = document.getElementById("estacionamento_id").value;
+
+    const url = `http://localhost:8080/carros/${id}`;
+    const body = {
+        "id": id,
+        "cor": cor,
+        "placa": placa,
+        "velocidademax": velocidademax,
+        "estacionamento": {
+            "id": estacionamento_id
+        }
+    }
+    const options = {
+        method: "PUT",
+        body: JSON.stringify(body),
+        mode: "cors",
+        cache: "default",
+        headers: myHeaders
+    }
+
+    fetch(url, options)
+        .then(response => {
+            (response.status == "201") ? alert("Carro atualizado com sucesso!") : alert("Erro! -> Este ID não existe no banco!");
+        })
 }
 
 //DELETE - Apaga um carro dentro do banco apartir de um ID
