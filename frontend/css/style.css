@@ -31,7 +31,6 @@
     color: white;
     padding: 14px 16px;
     background-color: inherit;
-    font-family: inherit; 
     margin: 0;
   }
   
@@ -44,10 +43,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    background-color: cornsilk;
   }
   
   /* Links inside the dropdown */
@@ -62,7 +58,7 @@
   
   /* Add a grey background color to dropdown links on hover */
   .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: gainsboro;
   }
   
   /* Show the dropdown menu on hover */
@@ -116,26 +112,6 @@
     margin-left: auto;
     margin-right: auto;
     padding: 1%;
-}
-
-#tabelaLinks {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    font-size: 2em;
-    line-height: 1.5em;
-}
-
-#links:link,
-#links:visited,
-#links:active {
-    text-decoration: none;
-    color: darkslateblue;
-}
-
-#links:hover {
-    color: #000;
 }
 
 /* Tags globais */
